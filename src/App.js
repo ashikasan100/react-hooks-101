@@ -1,41 +1,34 @@
-import React, {useState} from 'react'
+import React, {useEffect,useState} from 'react'
 
-const App=()=> {
-  const [count,setCount]= useState(0)
-  const increment=() => setCount(count + 1)
-  const decrement=() => setCount(count - 1)
-  const increment2=() => setCount(previousCount => previousCount+ 1)
-  const decrement2=() => setCount(previousCount => previousCount- 1)
-  const reset=() =>setCount(0)
-  const x2=() => setCount(previousCount => previousCount* 2)
-  
-  const ensyu=() => setCount(previousCount =>{
-      if(previousCount % 3==0){
-        return previousCount /3
-      }else{return previousCount}
-    }
-  )
-    
- 
+const App=props=> {
+
+  const [state,setState]=useState(props)
+  const {name,price}=state
+
+  useEffect(()=>{
+    console.log('This is like componentDidMount or componentDidUpdate.')
+  })
+  useEffect(()=>{
+    console.log('This is like componentDidMount')
+  },[])
+  useEffect(()=>{
+    console.log('This callback is for name only.')
+  },[name])
 
   return (
     <>
-      <div >     count: {count}   </div>
-      <div>
-        <button onClick= {increment} >+1</button>
-        <button onClick= {decrement} >-1</button>
-      </div>
-      <div>
-        <button onClick= {increment2} >+1</button>
-        <button onClick= {decrement2} >-1</button>
-      </div>
-      <div>
-        <button onClick={reset}>reset</button>
-        <button onClick={x2}>x2</button>     
-        <button onClick={ensyu}>3の倍数だけ3で割る</button>     
-      </div>
+      <p>現在の{state.name}は{state.price}円です。</p>
+      <button onClick={()=>setState({...state,price:price+1})}>+1</button>
+      <button onClick={()=>setState({...state,price:price-1})}>-1</button>
+      <button onClick={()=>setState(props)}>Reset</button>
+      <input value={name} onChange={e => setState({...state,name:e.target.value})}/>
     </>
-    );
+  )
+}
+
+App.defaultProps={
+  name:'',
+  price:1000
 }
 
 export default App;
