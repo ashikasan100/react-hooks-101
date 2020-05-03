@@ -1,3 +1,4 @@
+ //削除イベントの処理
  import React from 'react'
 const Event = ({dispatch,event}) =>{
 const id =event.id

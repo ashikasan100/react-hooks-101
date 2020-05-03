@@ -1,17 +1,5 @@
 
-//action={
-//    type: "CREATE_EVENT",
-//    title: '2020東京オリンピックのおしらせ',
-//    body: '2020東京オリンピックを開催します、つきましては・・・',
-//}
-// sate = []
-// state =[
-//   {id:1,title:'タイトル1',body:'ボディー1"'
-//   {id:2,title:'タイトル2',body:'ボディー1"'
-//   {id:3,title:'タイトル3',body:'ボディー1"'
-//  }
-//]
-
+//ボタンの処理を書いている
 
 const events=(state = [],action) =>{
     switch(action.type){
