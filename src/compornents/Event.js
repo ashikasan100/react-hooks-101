@@ -1,12 +1,14 @@
  //削除イベントの処理
  import React from 'react'
+ import {DELETE_EVENT} from '../actions'
 const Event = ({dispatch,event}) =>{
 const id =event.id
  
               const handleClickDeleteButton =() =>{
                 const result = window.confirm(`イベント(id=${id}))をほんとーに削除していいですか`);
+                const DELETE_EVENT='DELETE_EVENT'
                 if (result)(
-                dispatch({type:'DELETE_EVENT',id:event.id}))
+                dispatch({type:DELETE_EVENT,id:event.id}))
 
             }
               return(

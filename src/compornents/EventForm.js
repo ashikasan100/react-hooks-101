@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
-
+import {CREATE_EVENT} from '../actions'
+import {DELETE_ALL_EVENT} from '../actions'
 
 const Eventform=({state,dispatch})=>{
   const [title,setTitle]=useState('')
@@ -10,7 +11,7 @@ const Eventform=({state,dispatch})=>{
   e.preventDefault()
   
   dispatch({
-    type:'CREATE_EVENT',
+    type: CREATE_EVENT,
     title,
     body 
   })
@@ -24,7 +25,7 @@ const Eventform=({state,dispatch})=>{
 const deleteAllEvents =e =>{
   e.preventDefault()
   const result = window.confirm('すべてのイベントをほんとーに削除していいですか');
-  if (result) ( dispatch({type:'DELETE_ALL_EVENT'}))
+  if (result) ( dispatch({type:DELETE_ALL_EVENT}))
 
 }
 const unCreatable = title==='' || body==='' 
