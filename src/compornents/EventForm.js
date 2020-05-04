@@ -7,16 +7,14 @@ const Eventform=()=>{
   const {state,dispatch}=useContext(AppContext)
   const [title,setTitle]=useState('')
   const [body,setBody]=useState('')
-  
-
   const addEvent= e =>{
-  e.preventDefault()
+   e.preventDefault()
   
-  dispatch({
-    type: CREATE_EVENT,
-    title,
-    body 
-  })
+   dispatch({
+     type: CREATE_EVENT,
+     title,
+      body 
+   })
   setTitle('')
   setBody('')
 
@@ -28,7 +26,6 @@ const deleteAllEvents =e =>{
   e.preventDefault()
   const result = window.confirm('すべてのイベントをほんとーに削除していいですか');
   if (result) ( dispatch({type:DELETE_ALL_EVENT}))
-
 }
 const unCreatable = title==='' || body==='' 
 
