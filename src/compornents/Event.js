@@ -1,6 +1,7 @@
  //削除イベントの処理
  import React from 'react'
  import {DELETE_EVENT} from '../actions'
+
 const Event = ({dispatch,event}) =>{
 const id =event.id
  
