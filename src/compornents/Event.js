@@ -1,8 +1,9 @@
  //削除イベントの処理
  import React ,{useContext} from 'react'
- import {DELETE_EVENT} from '../actions'
+ import {DELETE_EVENT,ADD_OPERATION_LOG} from '../actions'
 
 import AppContext from '../contexts/AppContext'
+import { timeCurrentIso8601} from "../utils"
 
 const Event = ({event}) =>{
   const {dispatch}=useContext(AppContext)
@@ -10,11 +11,16 @@ const Event = ({event}) =>{
  
 const handleClickDeleteButton =() =>{
 const result = window.confirm(`イベント(id=${id}))をほんとーに削除していいですか`);
-                
-       if (result)(
-          dispatch({type:DELETE_EVENT,id:event.id}))
-
+       if (result){
+          dispatch({type:DELETE_EVENT,id:event.id})
+          dispatch({type:ADD_OPERATION_LOG,
+            description:`イベント(id=${id})を削除しました`,
+            operatedaAt:timeCurrentIso8601()
+          })
+        } 
 }
+
+
               return(
 
               <tr >
