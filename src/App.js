@@ -5,15 +5,12 @@ const App=props=> {
   const [state,setState]=useState(props)
   const {name,price}=state
 
-  useEffect(()=>{
-    console.log('This is like componentDidMount or componentDidUpdate.')
-  })
-  useEffect(()=>{
-    console.log('This is like componentDidMount')
-  },[])
-  useEffect(()=>{
-    console.log('This callback is for name only.')
-  },[name])
+  //値をいれる、更新がかかった。第2引数なし
+  useEffect(()=>{ console.log('This is like componentDidMount or componentDidUpdate.')})
+    //画面初期描画。第2引数[]
+  useEffect(()=>{ console.log('This is like componentDidMount')},[])
+      //名前をかえる。第2引数[name]
+  useEffect(()=>{ console.log('This callback is for name only.')},[name])
 
   return (
     <>
