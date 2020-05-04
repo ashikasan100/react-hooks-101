@@ -1,7 +1,8 @@
 import React,{useContext,useState} from 'react';
-import {CREATE_EVENT,DELETE_ALL_EVENT,ADD_OPERATION_LOG,DELETE_OPERATION_LOGS} from '../actions'
+import {CREATE_EVENT,DELETE_ALL_EVENT,ADD_OPERATION_LOG,DELETE_ALL_OPERATION_LOGS} from '../actions'
 import AppContext from '../contexts/AppContext'
 import {timeCurrentIso8601} from '../utils.js'
+
 const Eventform=()=>{
   const {state,dispatch}=useContext(AppContext)
   const [title,setTitle]=useState('')
@@ -39,8 +40,16 @@ const deleteAllEvents =e =>{
     })
   }    
 }
-const unCreatable = title==='' || body==='' 
+  const unCreatable = title==='' || body==='' 
+  const deleteAllOperationLogs = e=>{
+    e.preventDefault()
 
+   
+    if ( window.confirm('すべての操作ログをほんとーに削除していいですか')) {
+      dispatch({type:DELETE_ALL_OPERATION_LOGS
+      })
+      }
+    }     
   return(
     <>
       <h4>イベント作成フォーム</h4>
@@ -56,6 +65,7 @@ const unCreatable = title==='' || body===''
         </div>
         <button className="btn btn-primary" onClick={addEvent} disabled={unCreatable}>イベントを作成する</button>
         <button className="btn btn-danger" onClick={deleteAllEvents} disabled={state.events.length===0}>すべてのイベントを削除する</button>      
+        <button className="btn btn-danger" onClick={deleteAllOperationLogs} disabled={state.operationLogs.length===0}>すべての操作ログを削除する</button>      
       </form>
     </>
   )
